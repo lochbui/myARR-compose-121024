@@ -1,13 +1,7 @@
 services:
   prowlarr:
     image: linuxserver/prowlarr:latest
-    networks:
-      arrs:
     container_name: prowlarr
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=US/Pacific
     volumes:
       - ${ARR}Prowlarr/config:/config
       - ${ARR}Prowlarr/backup:/data-vault/backup
@@ -17,3 +11,11 @@ services:
     restart: unless-stopped
     env_file:
       - '.env'
+      
+  homarr:
+    image: linuxserver/homarr:latest
+    container_name: homarr
+    volumes:
+      - ${ARR}Homarr/config:/config
+      - ${ARR}Homarr/backup:/data-vault/backup
+      - $/data/downloads/
