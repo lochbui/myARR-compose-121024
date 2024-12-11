@@ -1,0 +1,19 @@
+services:
+  prowlarr:
+    image: linuxserver/prowlarr:latest
+    networks:
+      arrs:
+    container_name: prowlarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=US/Pacific
+    volumes:
+      - ${ARR}Prowlarr/config:/config
+      - ${ARR}Prowlarr/backup:/data-vault/backup
+      - $/data/downloads/qbittorrent/completed
+    ports:
+      - 9696:9696
+    restart: unless-stopped
+    env_file:
+      - '.env'
