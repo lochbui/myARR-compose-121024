@@ -19,3 +19,7 @@ services:
       - ${ARR}Homarr/config:/config
       - ${ARR}Homarr/backup:/data-vault/backup
       - $/data/downloads/
+    Ports:
+      - '7575:7575'
+     env_file:
+      - '.env'
